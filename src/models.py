@@ -63,3 +63,26 @@ class Planets(db.Model):
             "rotation_period": self.rotation_period,
             "diameter": self.diameter,
         }
+
+class Spaceships(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    climate = db.Column(db.String(120), unique=True, nullable=False)
+    population = db.Column(db.Integer, unique=True, nullable=False)
+    orbital_period = db.Column(db.String(120), unique=True, nullable=False)
+    rotation_period = db.Column(db.String(120), unique=True, nullable=False)
+    diameter = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<Planets %r>' % self.username
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "climate": self.climate,
+            "population": self.population,
+            "orbital_period": self.orbital_period,
+            "rotation_period": self.rotation_period,
+            "diameter": self.diameter,
+        }
