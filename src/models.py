@@ -3,13 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.email
 
     def serialize(self):
         return {
@@ -19,16 +20,17 @@ class User(db.Model):
         }
     
 class People(db.Model):
+    __tablename__ = 'people'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    birth_year = db.Column(db.String(120), unique=True, nullable=False)
-    gender = db.Column(db.String(120), unique=True, nullable=False)
-    height = db.Column(db.String(120), unique=True, nullable=False)
-    skin_color = db.Column(db.String(120), unique=True, nullable=False)
-    eye_color = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    birth_year = db.Column(db.String(120), nullable=False)
+    gender = db.Column(db.String(120), nullable=False)
+    height = db.Column(db.String(120), nullable=False)
+    skin_color = db.Column(db.String(120), nullable=False)
+    eye_color = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
-        return '<People %r>' % self.username
+        return '<People %r>' % self.name
     
     def serialize(self):
         return {
@@ -42,16 +44,17 @@ class People(db.Model):
         }
 
 class Planets(db.Model):
+    __tablename__ = 'planets'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    climate = db.Column(db.String(120), unique=True, nullable=False)
-    population = db.Column(db.Integer, unique=True, nullable=False)
-    orbital_period = db.Column(db.String(120), unique=True, nullable=False)
-    rotation_period = db.Column(db.String(120), unique=True, nullable=False)
-    diameter = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    climate = db.Column(db.String(120), nullable=False)
+    population = db.Column(db.Integer, nullable=False)
+    orbital_period = db.Column(db.String(120), nullable=False)
+    rotation_period = db.Column(db.String(120), nullable=False)
+    diameter = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
-        return '<Planets %r>' % self.username
+        return '<Planets %r>' % self.name
     
     def serialize(self):
         return {
@@ -64,25 +67,3 @@ class Planets(db.Model):
             "diameter": self.diameter,
         }
 
-class Spaceships(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    climate = db.Column(db.String(120), unique=True, nullable=False)
-    population = db.Column(db.Integer, unique=True, nullable=False)
-    orbital_period = db.Column(db.String(120), unique=True, nullable=False)
-    rotation_period = db.Column(db.String(120), unique=True, nullable=False)
-    diameter = db.Column(db.String(120), unique=True, nullable=False)
-
-    def __repr__(self):
-        return '<Planets %r>' % self.username
-    
-    def serialize(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "climate": self.climate,
-            "population": self.population,
-            "orbital_period": self.orbital_period,
-            "rotation_period": self.rotation_period,
-            "diameter": self.diameter,
-        }
